@@ -1,4 +1,8 @@
-# Frontend Mentor - Single Price Grid Component
+## Note from me: "Finished and deployed. Link: https://n-single-price-grid-component.vercel.app/"
+                       
+***
+
+# Original README "Frontend Mentor - Single Price Grid Component"
 
 ![Design preview for the Single Price Grid Component coding challenge](./design/desktop-preview.jpg)
 
