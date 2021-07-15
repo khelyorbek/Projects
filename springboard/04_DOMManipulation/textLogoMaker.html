@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text logo Maker</title>
+  </head>
+  <body>
+    <h1>Text Logo Maker!</h1>
+    <p>The easy way to make awful text logos :)</p>
+
+    <form action="" id="logoform">
+      <p></p>
+      <!-- You can use the name to get the values easily -->
+      <label for="">
+        Enter a brand name:
+        <input
+          type="text"
+          name="brandname"
+          placeholder="Type in brand name here"
+        />
+      </label>
+
+      <p></p>
+      <!-- You can use the name to get the values easily -->
+      <label for="">
+        Select a brand color:
+        <input type="color" name="color" />
+      </label>
+
+      <p></p>
+      <!-- You can use the name to get the values easily -->
+      <label for="">
+        Select the size of the text:
+        <input type="range" name="fontsize" min="10" max="200" />
+      </label>
+      <p></p>
+      <input type="submit" value="Submit" />
+    </form>
+
+    <section id="results"></section>
+    <script src="textLogoMaker.js"></script>
+  </body>
+</html>
