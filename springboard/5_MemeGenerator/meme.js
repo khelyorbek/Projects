@@ -84,7 +84,7 @@ memeForm.addEventListener('submit',function(event){
         elImgDiv.append(elTextBotDiv);
 
 
-    // <<<<< ADDING THE IMAGE DIV TO THE PARENT DIV THAT HOUSES EVERYTHING >>>>>
+    // <<<<< ADDING THE IMAGE DIV TO THE PARENT DIV THAT HOUSES EVERYTHING  >>>>>
         elParentDiv.append(elImgDiv);  
     // <<<<< APPENDING THET PARENT DIV THAT HAS EVERYTHING TO THE MEME CONTAINER SECTION >>>>>
         memeContainer.append(elParentDiv);

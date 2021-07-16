@@ -64,7 +64,7 @@ body {
 #memeContainer {
     font-size: 3.2rem;
     color: white;
-    /* Used a webkit option to give text a black stroke around it */
+    /* Used a webkit option to give text a black stroke around it  */
     -webkit-text-stroke: 0.3vh black;
     font-weight: bold;
     /* Set the line height manually so the text doesn't overflow causing the div to expand */
