@@ -1,0 +1,35 @@
+#game div {
+  border: 1px solid black;
+  width: 15%;
+  height: 200px;
+  margin: 10px;
+  transition: all 500ms ;
+  display: inline-block;
+  
+   
+}
+#game { 
+  display: none;
+}
+
+h2 {
+  font-size: 4rem;
+  color: green;
+  display: none;
+}
+
+#startGame {
+  margin: 0 auto;
+  display: block;
+  padding: 3rem;
+  font-size: 2rem;
+}
+
+#restart {
+  margin: 0 auto;
+  display: block;
+  padding: 3rem;
+  font-size: 2rem;
+  display: none;
+}
+

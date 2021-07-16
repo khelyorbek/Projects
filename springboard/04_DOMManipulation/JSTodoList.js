@@ -3,18 +3,8 @@ const toDoOL = document.querySelector('#currentToDoList');
 const newTodoForm = document.querySelector('#newToDoForm');
 const newTodoText = document.querySelector('#newToDoText');
 
-const localTasks = JSON.parse(localStorage.getItem('Tasks'));
-for(let e of localTasks) {
-    
-}
-
-newTodoForm.addEventListener('submit', function(event) { 
-
-})
-
-/*
 document.addEventListener("DOMContentLoaded", function() {
-    getFromLocalStorage();
+    
 });
 
 // Adding logic to mark current to do items as complete or remove it
@@ -54,13 +44,21 @@ newTodoForm.addEventListener('submit', function(event) {
     newToDoRemoveButton.innerText = "Remove";
     // appending the new button to the end of the li
     newTodo.append(newToDoRemoveButton);
-
     
-    addToLocalStorage(newTodo.innerText,false);
+    
+    let allTodos = localStorage.getItem('allTodos'); // not an array
+    
+    if(allTodos === null) {
+        allTodos = [];
+    }
+
+   allTodos.push('test 1');
+   localStorage.setItem('allTodos', JSON.stringify(allTodos));
 
     // clearing out the value in the text box
     newTodoText.value = '';
 
+    
     
     // for debugging purposes
     console.log("Form submitted");
@@ -70,25 +68,6 @@ function addToLocalStorage(text, completed){
     const toDoObject = {
         text, completed
     };
-    
-    const toDoObject_string = JSON.stringify(toDoObject);
-
-    const localList = JSON.parse(localStorage.getItem('Tasks'));
-
-    console.log("Local list before adding:\n" + localList);
-    
-    let newLocalList;
-
-    newLocalList = localList + "\n" + toDoObject_string;
-
-    console.log("Local list after adding:\n" + newLocalList);
-    
-    localStorage.setItem('Tasks',JSON.stringify(newLocalList));
+    // Local storage addition
+    localStorage.setItem(JSON.stringify(toDoObject));
 }
-
-function getFromLocalStorage() {
-    const localList = JSON.parse(localStorage.getItem('Tasks'));   
-    return localList;
-}
-
-*/
