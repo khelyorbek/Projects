@@ -1,0 +1,10 @@
+Total time: 4.25 hrs (45+40+50+120/60=4.25)
+
+Work 1: 1:05pm downloaded the instructions and reviewed
+Break 1: 1:50pm (45 mins worked). Done with the meme details styling with flexbox.
+Work 2: 2:00 pm working on JS items.
+Break 2:  2:40pm (40 mins worked). Done with creating the meme. Styling is also done.
+Work 3: 2:55pm. working on JS items related to removing the element.
+Break 3: 3:45pm. (50 mins worked)
+Work 4: 4:20pm. Working on resolving issues with sections being able to be deleted and styling issues.
+Break 4: 6:20pm (2 hrs worked)

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assessment 1 - Meme Generator</title>
+    <!-- regular link to the css sheet -->
+    <link rel="stylesheet" href="meme.css" />
+  </head>
+  <body>
+    
+    <!-- Adding a section below to handle the input boxes and the button (submit) -->
+    <section id="memeDetails">
+        <h3>Meme Generator</h3>
+        <form id="memeForm">
+        <div>
+        <label for="memeURL"
+          >Paste the image URL</label>
+          <!-- Setting the input type of URL so the user can only input URLs and not just plain text -->
+          <input type="url" name="memeURL" id="memeURL"
+          />
+      </div>
+      <div>
+        <label for="memeTextTop"
+          >Text on Top</label>
+          <!-- Setting up a maximum length of a text that the user can type in to prevent the meme from getting cluttered -->
+          <input
+          type="text"
+          name="memeTextTop"
+          id="memeTextTop"
+          maxlength="45"
+      />
+      </div>
+      <div>
+        <label for="memeTextBot"
+          >Text on Bottom</label>
+          <!-- Setting up a maximum length of a text that the user can type in to prevent the meme from getting cluttered -->
+          <input
+          type="text"
+          name="memeTextBot"
+          id="memeTextBot"
+          maxlength="45"
+      />
+      </div>
+
+      <input type="submit" value="Generate the meme" id="memeGenerate" />
+    </form>
+    </section>
+    <!-- Added a section below to house the memes themselves -->
+    <section id="memeContainer">
+
+    </section>
+    <!-- Regular link to the JS script -->
+    <script src="meme.js"></script>
+  </body>
+</html>

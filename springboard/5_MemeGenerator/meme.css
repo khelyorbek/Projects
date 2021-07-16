@@ -1,0 +1,118 @@
+/* Setting the margins on the body so the top form covers the entire screen
+and setting a font so it matches the usual meme font */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    
+}
+
+/* styiling the box for URL, top text, bottom text and the submit button. used flexbox 10 split the rows properly */
+#memeDetails {
+    margin:0 auto;
+    display: flex;
+    flex-direction: column;
+    font-size: 3vh;
+    background-color: #E4FBFF;
+    padding: 1vh;
+}
+#memeDetails h3 {
+    text-align: center;
+    padding: 0;
+    margin: 1vh 0 2vh 0;
+}
+
+#memeDetails div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+    margin-bottom: 1vh;
+}
+
+#memeDetails div label{
+    flex: 1;
+}
+
+#memeDetails div input {
+    flex: 2;   
+    font-size: 2vh;
+    padding-left: 1vh;
+    color: grey;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#memeDetails input[type='submit'] {
+    background-color: #0b6efd;
+    color: white;
+    font-weight: bold;
+    font-size: 2vh;
+    border: 0;
+    border-radius: 14px;
+    min-height: 4vh;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+}
+
+#memeDetails input[type='submit']:hover {
+    background-color: #0F4C81;
+    transition: all 0.5s;
+    
+}
+/* End of styling the meme details box */
+
+/* Creating some styling for the meme container itself */
+#memeContainer {
+    font-size: 3.2rem;
+    color: white;
+    /* Used a webkit option to give text a black stroke around it */
+    -webkit-text-stroke: 0.3vh black;
+    font-weight: bold;
+    /* Set the line height manually so the text doesn't overflow causing the div to expand */
+    line-height: 2.23rem;
+    /* Used flexbox for organizing the memes themself */
+    display: flex;
+    /* Set the direction as rows and had the overflow go to the bottom with wrap */
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* Added justification so some space can be added between the divs */
+    justify-content:space-evenly;
+    /* Adding an overflow wrap logic so if the word is one long string, it will be broken down */
+    overflow-wrap: break-word;
+}
+
+/* Created CSS logic for the top text to become black when the user hovers over it. Will be used for the remove functionality */
+#memeContainer div:hover div:nth-child(2){
+    filter: brightness(25%);
+    transition: all 0.4s;
+
+    }
+
+/* Created CSS logic for the bottom text to become black when the user hovers over it. Will be used for the remove functionality */
+#memeContainer div:hover div:nth-child(3){
+    filter: brightness(25%);
+    transition: all 0.4s;
+
+}
+
+/* Created CSS logic for the image to become black when the user hovers over it. Will be used for the remove functionality */
+#memeContainer div:hover img{
+    filter:brightness(25%);
+    transition: all 0.4s;
+}
+
+/* Styled the remove button by removing the stroke first 
+then setting the color 
+and theen the pointer to off so user can't select the remove text */
+.removeBtn {
+    -webkit-text-stroke: 0;
+    color:white;
+    pointer-events: none;
+    transition: all 0.5s;
+
+}
+
+/* Gave some styling to every meme image that is added so they are all the same size. tested out responsiveness - works good */
+img {
+    max-width: 600px;
+    max-height: 600px;
+}
