@@ -1,0 +1,28 @@
+Part I
+Answer the following questions:
+
+What git command creates a branch?
+   git branch -b NAME
+   /* where NAME is the name of the branch */ 
+
+What is the difference between a fast-forward and recursive merge?
+   Fast forward is the straight merge on a linear path where new code was written and old code was overwritten.
+   Recursive merge is when git will add the latest changes to the main branch but also handles some renames, other code changes.
+      If you check my previous commits, i actually created a new branch which had 1 line update to something else
+      Afterwards I updated the main branch but NOT the same line. I updated the title
+      Git recursiverly merged both changes so my title and my line had the latest code. Pretty sweet if you ask me :)
+
+What git command changes to another branch?
+   git checkout NAME
+
+What git command deletes a branch?
+   git branch -d NAME
+   git brach -D NAME /* If you haven't merged it yet */
+
+How do merge conflicts happen?
+   They happen when mutliple people are working on the same file and make changes to the same line(s).
+   Git cannot detect which code is the right one so it errors out until human intervention.
+   I can't imagine what a pain it is to do on a massive enterprise application scale.
+
+Part II
+   Already completed by previous commits on the main branch. Please check them out.
