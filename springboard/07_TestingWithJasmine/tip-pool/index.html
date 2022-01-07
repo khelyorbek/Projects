@@ -83,10 +83,16 @@
   src="https://unpkg.com/jasmine-core/lib/jasmine-core/jasmine.js"></script>
 <script 
   src="https://unpkg.com/jasmine-core/lib/jasmine-core/jasmine-html.js"></script>
+
+<!-- the original value calls for boot.js which does not exist in Jasmine io version 4. calling boot 1 and boot 2 instead -->
+  <script 
+  src= "https://unpkg.com/jasmine-core/lib/jasmine-core/boot0.js"></script>
 <script 
-  src= "https://unpkg.com/jasmine-core/lib/jasmine-core/boot.js"></script>
+src= "https://unpkg.com/jasmine-core/lib/jasmine-core/boot1.js"></script>
 
 <script src="servers.test.js"></script> 
+<script src="payments.test.js"></script> 
+<script src="helpers.test.js"></script> 
 
 <!-- end of Jasmine tests -->
 

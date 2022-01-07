@@ -24,3 +24,16 @@ function appendTd(tr, value) {
 
   tr.append(newTd);
 }
+
+// Step 3, creating a new function that will append a new td with an X in it and will remove the row on click
+// This function is called in servers.js updateServerTable() and 
+function appendDeleteBtn(tr) {
+  let newTd = document.createElement('td');
+  newTd.innerText = "X";
+
+  tr.append(newTd);
+
+  newTd.addEventListener('click', function(e) {
+    e.target.parentElement.remove();
+  });
+}
