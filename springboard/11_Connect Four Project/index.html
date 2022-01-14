@@ -1,0 +1,31 @@
+<!doctype html>
+<head>
+  <title>Connect 4</title>
+  <link href="connect4.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="gameSettings">
+  <label for="height">Select height (4-15):</label>
+  <input type="range" min=4 max=15 id="height" name="height">
+
+  <label for="width">Select width (4-15):</label>
+  <input type="range" min=4 max=15 id="width" name="width">
+  <br>
+  <button style="width:100%; height: 30px; font-size: 2vh;" id="btnStart">Start</button>
+</div>
+
+<center>
+  <h1 id="congrats"></h1>
+  <button style="width:200px; height: 40px; visibility: hidden;font-size: 2vh;" id="btnRefresh">Play again</button>
+  
+</center>
+
+<div id="game">
+  <table id="board"></table>
+</div>
+
+<script src="connect4.js"></script>
+
+</body>
+</html>
