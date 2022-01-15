@@ -1,31 +1,39 @@
 <!doctype html>
+
 <head>
   <title>Connect 4</title>
   <link href="connect4.css" rel="stylesheet">
 </head>
+
 <body>
 
-<div id="gameSettings">
-  <label for="height">Select height (4-15):</label>
-  <input type="range" min=4 max=15 id="height" name="height">
+  <!-- Adding a box that allows the user to select the height and width of the board
+Adding a button to start the game -->
+  <div id="gameSettings">
+    <label for="height">Select the height (4-15): <strong><span id="heightVal">7</span></strong></label>
+    <input type="range" value="7" min=4 max=15 id="height" name="height"
+      oninput="document.getElementById('heightVal').innerText=this.value">
 
-  <label for="width">Select width (4-15):</label>
-  <input type="range" min=4 max=15 id="width" name="width">
-  <br>
-  <button style="width:100%; height: 30px; font-size: 2vh;" id="btnStart">Start</button>
-</div>
+    <label for="width">Select the width (4-15): <strong><span id="widthVal">7</span></strong></label>
+    <input type="range" value="7" min=4 max=15 id="width" name="width"
+      oninput="document.getElementById('widthVal').innerText=this.value">
+    <br>
+    <button style="width:100%; height: 30px; font-size: 2vh;" id="btnStart">Start</button>
+  </div>
 
-<center>
-  <h1 id="congrats"></h1>
-  <button style="width:200px; height: 40px; visibility: hidden;font-size: 2vh;" id="btnRefresh">Play again</button>
+  <!-- Creating an empty congrats h1 and button and hiding it by default -->
+  <center>
+    <h1 id="congrats"></h1>
+    <button style="width:200px; height: 40px; visibility: hidden;font-size: 2vh;" id="btnRefresh">Play again</button>
+  </center>
+
   
-</center>
+  <div id="game">
+    <table id="board"></table>
+  </div>
 
-<div id="game">
-  <table id="board"></table>
-</div>
-
-<script src="connect4.js"></script>
+  <script src="connect4.js"></script>
 
 </body>
+
 </html>

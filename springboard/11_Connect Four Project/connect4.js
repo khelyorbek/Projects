@@ -7,31 +7,31 @@
 
 // >>> Adding my own custom code that will execute upon the page load <<<
 
-  // creating variables that store the start button, height and width sliders
-  const btnStart = document.getElementById('btnStart');
-  const heightInput = document.getElementById('height');
-  const widthInput = document.getElementById('width');
-  
-  // initializing the values of width and height
-  let WIDTH = 7;
-  let HEIGHT = 6;
-  
-  // Creating an event listener that will listen to a button click
-  btnStart.addEventListener('click',function(e){
-    // taking the value of the sliders and passing them into the width and height variables
-    WIDTH = widthInput.value;
-    HEIGHT = heightInput.value;
+// creating variables that store the start button, height and width sliders
+const btnStart = document.getElementById('btnStart');
+const heightInput = document.getElementById('height');
+const widthInput = document.getElementById('width');
 
-    // making the in-memory table
-    makeBoard();
-    // making the DOM board
-    makeHtmlBoard();
+// initializing the values of width and height
+let WIDTH = 7;
+let HEIGHT = 6;
 
-    // removing the start selection screen
-    document.getElementById('gameSettings').style.display = 'none';
-    // making the table visible
-    document.getElementById('game').style.visibility = 'visible';
-  })
+// Creating an event listener that will listen to a button click
+btnStart.addEventListener('click', function (e) {
+  // taking the value of the sliders and passing them into the width and height variables
+  WIDTH = widthInput.value;
+  HEIGHT = heightInput.value;
+
+  // making the in-memory table
+  makeBoard();
+  // making the DOM board
+  makeHtmlBoard();
+
+  // removing the start selection screen
+  document.getElementById('gameSettings').style.display = 'none';
+  // making the table visible
+  document.getElementById('game').style.visibility = 'visible';
+})
 
 // >>> End of custom code <<<
 
@@ -39,16 +39,16 @@ let currPlayer = 1; // active player: 1 or 2
 const board = []; // array of rows, each row is array of cells  (board[y][x])
 
 
-function makeBoard() {
+const makeBoard = () => {
   // TODO 3: set "board" to empty HEIGHT x WIDTH matrix array
-  
+
   // creating a for loop that will iterate over height (y)
-  for(let i=0;i<HEIGHT;i++) {
+  for (let i = 0; i < HEIGHT; i++) {
     // on every iteration rest the jArr array to nothing so it can store values from the j for loop below
     let jArr = [];
 
     // creating a for loop that will iterate over width (x)
-    for(let j=0;j<WIDTH;j++) {
+    for (let j = 0; j < WIDTH; j++) {
       // on every iterations, add a null into jArr
       jArr.push(null);
       // once this loop is done, we will have an array full of nulls that is WIDTH big
@@ -56,12 +56,11 @@ function makeBoard() {
     // close to the end of i for loop iteration, the jArr full of nulls will be added into our board array
     board.push(jArr);
   }
-  console.log(board);
 }
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
 
-function makeHtmlBoard() {
+const makeHtmlBoard = () => {
   // TODO 4: get "htmlBoard" variable from the item in HTML w/ID of "board"
   const htmlBoard = document.querySelector('#board');
 
@@ -76,7 +75,7 @@ function makeHtmlBoard() {
 
   // creating a for loop to iterate over the width to creat a top row 
   // we don't need to iterate over height because we are only making 1 row
-  for (var x = 0; x < WIDTH; x++) {
+  for (let x = 0; x < WIDTH; x++) {
     // every time the loop runs, we create a new td element and calling it headCell
     let headCell = document.createElement("td");
 
@@ -92,12 +91,12 @@ function makeHtmlBoard() {
 
   // TODO 4: add comment for this code
   // creating a for loop to iterate over the set HEIGHT
-  for (var y = 0; y < HEIGHT; y++) {
+  for (let y = 0; y < HEIGHT; y++) {
     // every time the loop runs, we create a new tr and call it row
     const row = document.createElement("tr");
 
     // creating a for loop to iterate over the set WIDTH
-    for (var x = 0; x < WIDTH; x++) {
+    for (let x = 0; x < WIDTH; x++) {
 
       // every time the WIDTH loop runs, we create a td and call it cell
       const cell = document.createElement("td");
@@ -116,7 +115,7 @@ function makeHtmlBoard() {
 
 /** findSpotForCol: given column x, return top empty y (null if filled) */
 
-function findSpotForCol(x) {
+const findSpotForCol = (x) => {
   // TODO: write the real version of this, rather than always returning 0
 
   // creating an arraw to store all the cells that are null
@@ -125,16 +124,16 @@ function findSpotForCol(x) {
   // using a for loop to iterate over each cell in a column
   // i starts at the HEIGHT-1 because tds are created start with 0
   // i keeps decreasing until it reaches a 0
-  for(let i=HEIGHT-1; i>=0; i--) {
+  for (let i = HEIGHT - 1; i >= 0; i--) {
     // if the cell is null, its available as a valid spot
-    if(board[i][x] === null) {
+    if (board[i][x] === null) {
       // we add the i into the array. We store all the valid i numbers here starting with the largest one
-      nullCells.push(i);     
+      nullCells.push(i);
     }
   }
-  
+
   // checking if an array is empty (meaning that we have no available cells) 
-  if(nullCells.length === 0) {
+  if (nullCells.length === 0) {
     // returning null per the assignment instructions
     return null;
   } else {
@@ -146,7 +145,7 @@ function findSpotForCol(x) {
 
 /** placeInTable: update DOM to place piece into HTML table of board */
 
-function placeInTable(y, x) {
+const placeInTable = (y, x) => {
   // TODO 5: make a div and insert into correct table cell
   // y and x are passed into this function as arguments
 
@@ -159,9 +158,9 @@ function placeInTable(y, x) {
 
   // adding a class that will have the current player number
   // we will use this class later to set the background of the div based on the player
-  square.classList.add("player"+currPlayer);
+  square.classList.add("player" + currPlayer);
 
-  
+
   // creating a new variable and storing the correct td into it
   // using string literals to find the td with the correct id
   const tdYX = document.getElementById(`${y}-${x}`);
@@ -172,36 +171,40 @@ function placeInTable(y, x) {
 
 /** endGame: announce game end */
 
-function endGame(msg) {
-  // Adding some custom logic into this function
-  
-  // assigning h1 a value that is passed to this function
-  document.getElementById('congrats').innerText = msg;
+const endGame = (msg) => {
+  // Creating a timer that waits for 0.8 seconds before saying annoucing a tie or a winner.
+  // This is because we have a 0.7 second animation. We don't want to anounce a winnder before the piece falls onto the board.
+  setTimeout(() => {
 
-  // linking a variable to a button for refreshing
-  const btnRefresh = document.getElementById('btnRefresh');
+    // assigning h1 a value that is passed to this function
+    document.getElementById('congrats').innerText = msg;
 
-  // making the button visible
-  btnRefresh.style.visibility = 'visible';
+    // linking a variable to a button for refreshing
+    const btnRefresh = document.getElementById('btnRefresh');
 
-  // making the game table hidden
-  document.getElementById('game').style.visibility = 'hidden';
+    // making the button visible
+    btnRefresh.style.visibility = 'visible';
 
-  // adding an event listener and on click it will reload the page
-  // button says "play again"
-  btnRefresh.addEventListener('click',() => {
-    location.reload();
-  })
+    // making the game table hidden
+    document.getElementById('game').style.visibility = 'hidden';
+
+    // adding an event listener and on click it will reload the page
+    // button says "play again"
+    btnRefresh.addEventListener('click', () => {
+      location.reload();
+    })
+  }, 800);
+
 }
 
 /** handleClick: handle click of column top to play piece */
 
-function handleClick(evt) {
+const handleClick = (evt) => {
   // get x from ID of clicked cell
   let x = +evt.target.id;
 
   // get next spot in column (if none, ignore click)
-  var y = findSpotForCol(x);
+  let y = findSpotForCol(x);
   if (y === null) {
     return;
   }
@@ -218,7 +221,7 @@ function handleClick(evt) {
 
   // TODO: check if all cells in board are filled; if so call, call endGame
   // Check every array item inside of a parent array to see if its filled
-  if(board.every(y => y.every(x => x != null))) {
+  if (board.every(y => y.every(x => x != null))) {
     // If all are filled, endGame function is initiated.
     endGame("Its a tie!")
   };
@@ -231,7 +234,7 @@ function handleClick(evt) {
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
 
-function checkForWin() {
+const checkForWin = () => {
   function _win(cells) {
     // Check four cells to see if they're all color of current player
     //  - cells: list of four (y, x) cells

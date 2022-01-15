@@ -1,10 +1,17 @@
-/* CUSTOM CSS CODE */
+/* disabling annoying blinking cursor that happens when I press a mouse anywhere 
+The code is not mine. Source: https://www.codegrepper.com/code-examples/css/css+disable+blinking+cursor
+*/
+* {
+  caret-color: rgba(0,0,0,0);
+}
+
+/* Making the main table flex and center. hiding by default and making it visible after the settings are selected */
 #game {
   display: flex;
   justify-content: center;
   visibility: hidden;
 }
-
+/* Making the settings screen flex and stack inputs on top of each other. Moving the entire div to center*/
 #gameSettings {
   width: 33%;
   display: flex;
@@ -12,39 +19,54 @@
   margin-left: 33%;
 }
 
+/* Increasing the size of inputs*/
 #gameSettings input{   
   height: 30px; 
 }
 
+/* changing the font to less ugly one */
 body {   
   font-family: Arial, Helvetica, sans-serif; 
 }
 
-/* END OF CUSTOM CSS CODE */
-
+/* Adding animation to the piece when it appears on the board */
+@keyframes pieceSlide {
+  0% {
+            transform: translateY(-50vh);
+            opacity: 0%;
+  }
+  100% {
+            transform: translateY(0px);
+            opacity: 100%;
+  }
+}
 
 /* game board table */
 #board td {
   width: 50px;
   height: 50px;
   border: solid 1px #666;
+  
+  /* Making the table board tds round for more realism :D  */
+  border-collapse: separate;
+  border-radius: 2em;
+  
 }
 
 /* pieces are div within game table cells: draw as colored circles */
 
 .piece {
   /* TODO: make into circles */
-  /* ___DONE___ REMOVE THESE 2 LINES BEFORE POSTING */
   border-radius: 2em;
   border: 1px solid grey;
-
+  /* Adding animation to the piece when it appears on the board */
+  animation: pieceSlide 0.7s ease-out;
   margin: 5px;
   width: 80%;
   height: 80%;
 }
 
 /* TODO: make pieces red/blue,  depending on player 1/2 piece */
-/* ___DONE___ REMOVE THESE 2 LINES BEFORE POSTING */
 .player1 {
   background-color: red;
 }
@@ -56,9 +78,14 @@ body {
 /* column-top is table row of clickable areas for each column */
 
 #column-top td {
-  border: dashed 1px lightgray;
+  border: dashed 2px lightgray;
+  border-radius: 1em;
 }
 
 #column-top td:hover {
   background-color: gold;
+  /* showing an arrow when the user hovers over the top row of the board */
+  background-image: url("arrow2.png");
+  background-repeat:no-repeat;
+  background-size:100% 100%;
 }
