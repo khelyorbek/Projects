@@ -118,29 +118,18 @@ const makeHtmlBoard = () => {
 const findSpotForCol = (x) => {
   // TODO: write the real version of this, rather than always returning 0
 
-  // creating an arraw to store all the cells that are null
-  const nullCells = [];
-
   // using a for loop to iterate over each cell in a column
   // i starts at the HEIGHT-1 because tds are created start with 0
   // i keeps decreasing until it reaches a 0
   for (let i = HEIGHT - 1; i >= 0; i--) {
     // if the cell is null, its available as a valid spot
     if (board[i][x] === null) {
-      // we add the i into the array. We store all the valid i numbers here starting with the largest one
-      nullCells.push(i);
+      // we return i right away because its the lowest v available spot to add the piece too
+      return i;
     }
   }
-
-  // checking if an array is empty (meaning that we have no available cells) 
-  if (nullCells.length === 0) {
-    // returning null per the assignment instructions
-    return null;
-  } else {
-    // if its not 0, we return the first index of an array which will be the largest number
-    // largest number is the largest y axis. Which is the lowest cell in the table.
-    return nullCells[0];
-  }
+  // if none of the cells are empty, return null as per the instructions
+  return null;
 }
 
 /** placeInTable: update DOM to place piece into HTML table of board */
@@ -262,9 +251,9 @@ const checkForWin = () => {
       let horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
       // setting vert to be an array of the curret item AND 3 more items above it 
       let vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];
-      // setting diagDR to be an array of the curret item AND 3 more items to the right and to the top of it ^>
+      // setting diagDR to be an array of the curret item AND 3 more items to the right and to the top of it v>
       let diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];
-      // setting diagDL to be an array of the curret item AND 3 more items to the left and to the top of it ^<
+      // setting diagDL to be an array of the curret item AND 3 more items to the left and to the top of it v<
       let diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]];
 
       // if any of these return true, the function return true, meaning a win has been registered.
