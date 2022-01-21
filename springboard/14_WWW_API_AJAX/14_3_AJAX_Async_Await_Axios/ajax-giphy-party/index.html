@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Giphy Party!</title>
+  <style>
+    body {
+      background-color: lightcyan;
+    }
+    #content {
+      margin: 2em auto;
+      border: 1px solid black;
+      width: 100%;
+    }
+    img {
+      height: 300px;
+    }
+    #controls {
+      width: 40%;
+      margin: 0 auto;
+    }
+    input {
+      height: 2em;
+      width: 20em;
+      background-color: #D9D7F1;
+      border: 0px;
+      border-radius: 5em;
+      padding-left: 1em;
+    }
+    input:focus {
+      background-color: #7900FF;
+      color: white;
+    }
+
+    input::placeholder {
+      color: grey;
+    }
+
+    button {
+      height: 2.5em;
+      width: 9em;
+      background-color: #D9D7F1;
+      border: 0px;
+      border-radius: 5em;
+    }
+    button:hover {
+      background-color: #7900FF;
+      color: white;
+    }
+    * {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 style="text-align: center;">Giphy Party!</h1>
+  <div id="controls">
+    <input type="text" name="searchText" id="searchText" placeholder="Type in your keyword here">
+    <button id="searchBtn">Search Giphy!</button>
+    <button id="removeAllBtn">Remove All</button>
+  </div>
+  <div id="content">
+
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
