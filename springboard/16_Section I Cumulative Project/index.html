@@ -36,13 +36,15 @@
 <nav>
   <div class="navbar-brand">
     <a class="nav-link" href="#" id="nav-all">Hack or Snooze</a>
-    <!-- EK Add a link in the navbar with the text of “submit”. -->
-    | 
+
+    <!-- EK: My HTML Code. | is used as a separator -->
+    | <!-- Adding a new item to the left side called Submit. Giving it an id so we can attach an event listener using jQuery -->
     <a class="nav-link" href='#' id="nav-submit">📝 Submit new</a>
-    | 
+    | <!-- Adding a new item to the left side called Favorites. Giving it an id so we can attach an event listener using jQuery  -->
     <a class="nav-link" href='#' id="nav-favs">💌 Favorites</a>
-    |
+    | <!-- Adding a new item to the left side called My stories. Giving it an id so we can attach an event listener using jQuery  -->
     <a class="nav-link" href='#' id="nav-mine">📘 My stories</a>
+
   </div>
   <div class="nav-right">
     
@@ -55,15 +57,17 @@
 <!-- area for stories (all stories, user stories, favorites) -->
 <section class="stories-container container">
 
-  <!-- EK Add a form in the HTML for the story. This should initially be hidden. -->
+  <!-- EK: Adding a form in the HTML for the story. This is initially hidden. We unhide using jQuery later. -->
   <form action="" id="submit-div" class="hidden">
+    <!-- Form contains 3 inputs for author, title and url. each one of them have ids and placeholder -->
     <input type="text" name="submit-author" id="submit-author" placeholder="Author">
     <input type="text" name="submit-title" id="submit-title" placeholder="Title">
     <input type="text" name="submit-url" id="submit-url" placeholder="URL">
-    <button id="submit-btn">Submit</button>
+    <!-- Adding a button so we can submit the form -->
+    <input type="submit" id="submit-btn"></input>
   </form>
 
-  <!-- EK Add a div in the HTML for the favorites. This should initially be hidden. -->
+  <!-- EK: Add a div in the HTML for the favorites and user posts portion. This is initially hidden. We unhide using jQuery later. -->
   <div id="favs-div" class="hidden"></div>
 
   <!-- loading message (removed by JS after stories loaded) -->

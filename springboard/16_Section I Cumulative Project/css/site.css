@@ -1,3 +1,31 @@
+/* EK Adding some css for my own created items */
+#submit-btn {
+  width: 36.5%;
+  background-color: #7267CB;
+  color: white;
+  font-weight: bold;
+}
+
+#submit-btn:hover {
+  background-color: #6E3CBC;
+}
+
+#submit-div input[type="text"]:hover {
+  background-color: #b983ff2d;
+}
+
+.navbar-brand a {
+  padding: 0 1em;
+}
+
+.navbar-brand a:hover {
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 0.4em;
+}
+
+/* END OF CUSTOM CSS CODE */
+
 /* General typography */
 
 body {

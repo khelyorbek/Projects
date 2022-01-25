@@ -33,6 +33,9 @@ function hidePageComponents() {
 async function start() {
   console.debug("start");
 
+  // EK: setting the local storage item to the main
+  localStorage.setItem('currPage','main');
+
   // "Remember logged-in user" and log in, if credentials in localStorage
   await checkForRememberedUser();
   await getAndShowStoriesOnStart();

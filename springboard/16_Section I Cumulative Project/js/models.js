@@ -25,6 +25,7 @@ class Story {
 
   getHostName() {
     // UNIMPLEMENTED: complete this function!
+    // EK: writing logic to get the ULR from the DOM and then remove the unnecessary portions
     return "hostname.com";
   }
 }
@@ -75,20 +76,21 @@ class StoryList {
  * Returns the new Story instance
  */
 
-  // EK Subpart 2A: Sending Story Data to the Backend API
-  async addStory(user, { title, author, url }) {
+  // EK: Subpart 2A: Sending Story Data to the Backend API
+  async addStory({ title, author, url }) {
 
-    // getting the token that will be used to post
-    const token = user.loginToken;
+    // getting the token from the user class that will be used to post. otherwise will error out as auth is required.
+    const token = currentUser.loginToken;
 
-    // sending a post request to the api
+    // sending a post request to the api with the token and new story details
     const res = await axios.post(`${BASE_URL}/stories`, { token, story: { title, author, url } });
 
-    // making a story instance and passing the response into it
+    // making a story instance and passing the response from res > data > story into it.
     const story = new Story(res.data.story);
 
-    // adding the story to the story list
-    this.stories.push(story);
+    // adding the story to the story list. initially used push but it added to the end. used unshift to add to the top.
+    this.stories.unshift(story);
+    // this.stories.push(story);
 
     // returning the newly created story instance as asked
     return story;
@@ -125,7 +127,7 @@ class User {
     // store the login token on the user so it's easy to find for API calls.
     this.loginToken = token;
   }
-  // EK: Part 3: Display Favorite stories (UI)
+  // EK: Part 3: Display Favorite stories
   static showFavIcons(storyId) {
 
     // getting the list of favorites and converting to array with only story ids
@@ -135,33 +137,46 @@ class User {
     for (let f of favsArray) {
       // if the item from the list matches favorite
       if (f === storyId) {
-        // return a red heart
+        // return a red heart if the story is in favories array
+        // will add the trash bin at the end but its hidden
         return `<span class="favIcon">❤️</span><a id="delIcon" class="hidden">🗑️</a>`;
       }
     }
-    // otherwise return white heart
+    // otherwise return white heart if the story is not favorited
+    // will add the trash bin at the end but its hidden
     return `<span class="favIcon">🤍</span><a id="delIcon" class="hidden">🗑️</a>`;
   }
 
-  // EK: Part 3: Send favorite story id to API (JS)
+  // EK: Part 3: Toggle the icon when the click happens. Event listener is in stories.js
   static async toggleFavIcon(storyId) {
     // getting the list of favorites and converting to array with only story ids
     const favsArray = currentUser.favorites.map(i => i.storyId);
 
     // looping through each item in favorite array
     for (let f of favsArray) {
-      // if the item from the list matches favorite
+      // if the item passed to this function matches an item from the favorites array
       if (f === storyId) {
-        // delete the favorite from the api
+        // it means that the story is favorites. When we click on it it should unfavorite it
+        // sending a delete request using axios to the API
         await axios.delete(`${BASE_URL}/users/${currentUser.username}/favorites/${storyId}`, { params: {token: currentUser.loginToken }});
-        
+        currentUser.favorites = currentUser.favorites.filter(i => i.storyId !== f);
       } else {
-        // otherwise mark the item as favorite
-        await axios.post(`${BASE_URL}/users/${currentUser.username}/favorites/${storyId}`, {token: currentUser.loginToken });
+        // if the item is not currently a favorite, upon click it should be marked as such
+        // sending a post reques to the API
+        await axios.post(`${BASE_URL}/users/${currentUser.username}/favorites/${storyId}`, {token: currentUser.loginToken });   
         
       }
     }
-
+    // creating a logic that will check which page we are currently on based on local storage
+    if(localStorage.getItem('currPage') == 'favs') {
+      // if we are on the favorite page, regenerate the favorite page after the toggling is complete
+      getAllFavs();
+    } else {
+      // if we are on the main page, make sure that the new story div is hidden
+      $('#submit-div').hide();
+      // re-initialize everything. start() now sets a localStorage variable of currPage to main to indicate that we are on the main page.
+      start();
+    }
   }
 
   /** Register new user in API, make User instance & return it.
