@@ -72,15 +72,11 @@ async function postNewStory() {
   // have to reference storyList otherwise the function will not be found
   // posting the values to the API
   const res = await storyList.addStory(currentUser, {title, author, url});
-
-  // showing all the stories
-  $allStoriesList.show();
-  // hiding the submit form
-  $('#submit-div').hide();
   
-  // regular code that generated the main page
-  hidePageComponents();
-  putStoriesOnPage();
+  // showing all the stories
+  // $allStoriesList.show();
+  // hiding the submit form
+  // $('#submit-div').hide();
   
 }
 
@@ -119,6 +115,16 @@ async function getMyStories() {
     $allStoriesList.append($story);
   }
   $allStoriesList.show();
+
+  $("span").remove();
+  const trash = $("li a:first-child");
+  trash.toggleClass("hidden");
+
+  trash.on('click', async function(e){
+    await axios.delete(`${BASE_URL}/stories/${e.target.parentElement.id}`, { params: {token: currentUser.loginToken }});
+    e.target.parentElement.remove();
+  })
+  
 
 }
 

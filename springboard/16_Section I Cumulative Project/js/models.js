@@ -136,11 +136,11 @@ class User {
       // if the item from the list matches favorite
       if (f === storyId) {
         // return a red heart
-        return `<span class="favIcon">❤️</span>`;
+        return `<span class="favIcon">❤️</span><a id="delIcon" class="hidden">🗑️</a>`;
       }
     }
     // otherwise return white heart
-    return `<span class="favIcon">🤍</span>`;
+    return `<span class="favIcon">🤍</span><a id="delIcon" class="hidden">🗑️</a>`;
   }
 
   // EK: Part 3: Send favorite story id to API (JS)
@@ -154,11 +154,11 @@ class User {
       if (f === storyId) {
         // delete the favorite from the api
         await axios.delete(`${BASE_URL}/users/${currentUser.username}/favorites/${storyId}`, { params: {token: currentUser.loginToken }});
-        // starting the entire webpage scripts from scratch so the main board refreshes
+        
       } else {
         // otherwise mark the item as favorite
         await axios.post(`${BASE_URL}/users/${currentUser.username}/favorites/${storyId}`, {token: currentUser.loginToken });
-        // starting the entire webpage scripts from scratch so the main board refreshes
+        
       }
     }
 
