@@ -26,7 +26,8 @@ class Story {
   getHostName() {
     // UNIMPLEMENTED: complete this function!
     // EK: writing logic to get the ULR from the DOM and then remove the unnecessary portions
-    return "hostname.com";
+    // Used https://developer.mozilla.org/en-US/docs/Web/API/URL#properties as a ref
+    return new URL(this.url).host
   }
 }
 
@@ -151,7 +152,10 @@ class User {
   static async toggleFavIcon(storyId) {
     // getting the list of favorites and converting to array with only story ids
     const favsArray = currentUser.favorites.map(i => i.storyId);
-
+    console.log("storyID: " + storyId);
+    console.log("favArray: " + favsArray);
+    // EK DEV: 
+    
     // looping through each item in favorite array
     for (let f of favsArray) {
       // if the item passed to this function matches an item from the favorites array
