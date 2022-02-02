@@ -25,7 +25,11 @@ def is_odd_string(word):
     Longer example:
     
         >>> is_odd_string('amazing')
-        True
+        False
     """
 
     # Hint: you may find the ord() function useful here
+    if sum([x+1 for x in range(len(word))]) % 2 == 0:
+        return False
+    else:
+        return True

@@ -13,3 +13,17 @@ def find_the_duplicate(nums):
         >>> find_the_duplicate([2, 1, 3, 4]) is None
         True
     """
+    # My solution
+    dupes = [x for x in nums if nums.count(x) > 1]
+    if len(dupes) == 0:
+        return None
+    else:
+        return dupes[0]
+
+    # Their solution
+    # seen = set()
+
+    # for num in nums:
+    #     if num in seen:
+    #         return num
+    #     seen.add(num)
