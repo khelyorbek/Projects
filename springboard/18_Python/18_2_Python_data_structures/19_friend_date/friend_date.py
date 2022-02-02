@@ -16,3 +16,18 @@ def friend_date(a, b):
         >>> friend_date(sauron, gandalf)
         True
     """
+    in_common = set(a[2]) & set(b[2])
+    if in_common:
+        return True
+    else:
+        return False
+
+# Their solution
+    # if set(a[2]) & set(b[2]):
+    #     return True
+    # else:
+    #     return False
+
+    # can even do by converting to boolean!
+    #
+    # return bool(set(a[2] & set(b[2])

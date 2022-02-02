@@ -13,3 +13,7 @@ def triple_and_filter(nums):
         >>> triple_and_filter([1, 2])
         []
     """
+    return [n*3 for n in nums if n % 4 == 0]
+
+# Their solution
+    # return [num * 3 for num in nums if num % 4 == 0]
