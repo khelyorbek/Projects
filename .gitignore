@@ -1,3 +1,6 @@
-# Python
+# Ignoring the virtual environment folder for python
 venv/
+# Ignoring python's compiled bytecode
+*.pyc
+# Ignoring python's local cache
 ___pycache___/
