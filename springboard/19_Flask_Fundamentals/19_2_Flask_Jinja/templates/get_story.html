@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} Madlibs Select Story {% endblock %}
+
+{% block content %}
+    <form action="/prompts">
+        <label for="names">Select a story: </label>
+        <select name="names" id="names">
+            
+                {% for i in names %}
+                    <option value="{{i}}">{{i}}</option>
+                {% endfor %}
+        </select>
+        <button>Start</button>
+    </form>
+    
+{% endblock %}
