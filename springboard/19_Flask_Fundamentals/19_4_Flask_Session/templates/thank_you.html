@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+    <form action="/" method="get">
+        <h1>THANK YOU!</h1>
+        <h1>Here are your answers:</h1>
+        {% for i in responses %}
+            <h2>{{i}}</h2>
+        {% endfor %}
+        <button>START OVER</button>
+    </form>
+{% endblock %}
