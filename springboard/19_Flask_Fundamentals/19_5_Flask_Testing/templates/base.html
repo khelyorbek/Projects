@@ -1,0 +1,22 @@
+<!-- Base template for other template to build upon -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Adding a Jinja block for title -->
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Adding link to the CSS file -->
+    <link rel="stylesheet" href="static/app.css">
+</head>
+<body>
+    <!-- Adding a Jinja block for content -->
+    {% block content %} {% endblock %}
+    
+    <!-- Adding link to JS file -->
+    <script src="http://unpkg.com/jquery"></script>
+    <script src="https://unpkg.com/axios@0.19.0/dist/axios.js"></script>
+    <script src="static/app.js"></script>
+</body>
+</html>

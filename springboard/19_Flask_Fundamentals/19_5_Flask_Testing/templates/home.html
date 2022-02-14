@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Boggle{% endblock %}
+{% block content %}
+    <div id="content">
+
+    <table>
+        <thead></thead>
+        <tbody>
+            <!-- Logic to display the word table -->
+                <!-- Iterating over the height of the array -->
+                {% for y in range(5) %}
+                    <tr id="{{y}}">
+                        <!-- Iterating over the width of the array -->
+                        {% for x in range(5) %}
+                        <!-- board is a value passed to us from app.py -->
+                        <td id="{{y}}-{{x}}">{{board[y][x]}}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}            
+        </tbody>
+    </table>
+    <!-- Logic for the form to guess the word -->
+        <!-- form that allows a user to submit a guess. -->
+        <form id="guessForm" method="POST">
+            <input type="text" name="guess" id="guessInput" placeholder="Type in your guess here...">
+            <button id="guessButton">SUBMIT</button>
+        </form>
+    <!-- Creating an empty parapgraph to show messages to the user -->
+    <p id="flash_message"></p>
+    </div>
+    <aside>
+        <!-- Displaying statistical information. Variables in curly brackets are passed from app.py -->
+        <p>Current Score: <span id="game_score">0</span></p>
+        <p>Highest Score: <span id="highest_score">{{highest_score}}</span></p>
+        <p>Times Played:  <span id="times_played">{{times_played}}</span></p>
+        <p>Time Left:     <span id="time_left">60</span></p>
+    </aside>
+    
+{% endblock %}
