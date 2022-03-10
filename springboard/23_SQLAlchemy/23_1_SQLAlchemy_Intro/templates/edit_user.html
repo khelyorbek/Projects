@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} Blogly Edit User {% endblock %}
+
+{% block content %} 
+    <form action="/users/{{user.id}}/edit" method="post">
+        <h1>Edit a user ID - {{user.id}}</h1>
+        <label for="first_name"></label>
+        <input type="text" name="first_name" placeholder="Enter a first name" value="{{user.first_name}}"></input>
+
+        <label for="last_name"></label>
+        <input type="text" name="last_name" placeholder="Enter a last name" value="{{user.last_name}}"></input>
+
+
+        <label for="image_url"></label>
+        <input type="text" name="image_url" placeholder="Provide an image of this user" value="{{user.image_url}}"></input>
+
+        <br>
+        <button>Save</button>
+    </form>
+
+        <form action="/users" method="get">
+            <button>Cancel</button>
+        </form>
+
+
+{% endblock %}
