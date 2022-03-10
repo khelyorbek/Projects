@@ -1,0 +1,6 @@
+INSERT INTO users (first_name, last_name, image_url) VALUES ('Ely','Khud','https://avatars.githubusercontent.com/u/19866191');
+
+INSERT INTO users (first_name, last_name, image_url) VALUES ('Bill','Gates'
+,'https://pbs.twimg.com/profile_images/974603248119222272/N5PLzyan.jpg');
+
+INSERT INTO users (first_name, last_name, image_url) VALUES ('David','Smith','https://renx.ca/wp-content/uploads/sites/2/2020/04/CIRA_JoshTabish400.jpeg');
