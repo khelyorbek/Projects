@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+View Post
+{% endblock %}
+
+{% block content %}
+<form>
+    <h1>{{post.title}}</h1>
+
+    <h2>{{post.content}}</h2>
+
+    <h3>Author: {{author.first_name}} {{author.last_name}}</h3>
+
+    <div class="form-group row">
+        <div class="ml-auto">
+            <button type="submit" 
+            class="btn btn-outline-primary"
+            formaction="/users"
+            formmethod="get"
+            >Cancel</button>
+
+            <button type="submit" 
+            class="btn btn-primary"            formaction="/posts/{{post.id}}/edit"
+            formmethod="get"
+            >Edit</button>
+
+            <button type="submit" 
+            class="btn btn-danger"
+            formaction="/posts/{{post.id}}/delete"
+            formmethod="post"
+            >Delete</button>
+
+        </div>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Create Post
+{% endblock %}
+
+{% block content %}
+<form>
+    <h1>Edit Post</h1>
+
+    <div class="form-group row">
+        <label for="title" class="col-sm-2 col-form-label">Title</label>
+        <div class="col-sm-10">
+        <input type="text"
+                class="form-control"
+                id="title"
+                name="title"
+                value="{{post.title}}">
+        </div>
+    </div>
+
+    <div class="form-group row mt-2">
+        <label for="content" class="col-sm-2 col-form-label">Content</label>
+        <div class="col-sm-10">
+            <textarea
+                    class="form-control"
+                    id="content"
+                    name="content">{{post.content}}</textarea>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="ml-auto">
+            <button type="submit" 
+            class="btn btn-outline-success float-end m-2"            formaction="/posts/{{post.id}}"
+            formmethod="get"
+            >Cancel</button>
+
+            <button type="submit" 
+            class="btn btn-success float-end m-2"
+            formaction="/posts/{{post.id}}/edit"
+            formmethod="post"
+            >Edit</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
