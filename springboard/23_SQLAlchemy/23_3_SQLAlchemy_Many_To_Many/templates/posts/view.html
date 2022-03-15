@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+View Post
+{% endblock %}
+
+{% block content %}
+<form>
+    <h1>{{post.title}}</h1>
+
+    <h4>{{post.content}}</h4>
+    <hr/>
+    <p><strong>Author: </strong>{{author.first_name}} {{author.last_name}}</p>
+
+    <p><strong>Tags: </strong>
+        {% for tag in tags %}
+        <span class="badge rounded-pill bg-primary">{{tag.name}}</span>
+        {% endfor %}
+    </p>
+    <hr/>
+    <div class="form-group row">
+        <div class="ml-auto">
+            <button type="submit" class="btn btn-outline-primary" formaction="/users" formmethod="get">Cancel</button>
+
+            <button type="submit" class="btn btn-primary" formaction="/posts/{{post.id}}/edit"
+                formmethod="get">Edit</button>
+
+            <button type="submit" class="btn btn-danger" formaction="/posts/{{post.id}}/delete"
+                formmethod="post">Delete</button>
+
+        </div>
+    </div>
+</form>
+{% endblock %}
