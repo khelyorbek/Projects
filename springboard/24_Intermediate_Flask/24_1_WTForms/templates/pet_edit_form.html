@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit a Pet {% endblock %}
+
+{% block content %}
+    
+    <div class="container">
+    <h1>Edit a pet</h1>
+    <form method="POST" id="pet-add-form">
+        {{form.hidden_tag()}}
+
+        {% for field in form 
+            if field.widget.input_type != 'hidden' %}
+
+            <p>
+                {{field.label(class_='col-form-label')}}
+
+                {% if field.widget.input_type == 'checkbox' %}
+                    {{field}}
+                {% else %}
+                    {{field(class_='form-control')}}
+                {% endif %}
+                
+
+                {% for error in field.errors %}
+                    <span class="text-danger">{{error}}</spap>
+                {% endfor %}
+            </p>
+
+        {% endfor %}
+
+
+        <button class="btn btn-primary">Submit</button>
+        <a href="/" class="btn btn-outline-secondary">Go back</a>
+    </form>
+        
+</div>
+{% endblock %}

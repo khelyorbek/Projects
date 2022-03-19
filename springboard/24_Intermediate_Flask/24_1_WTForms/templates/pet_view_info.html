@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %} View a Pet {% endblock %}
+
+{% block content %}
+    
+    <div class="container">
+    <h1>{{pet.name}}'s Information:</h1>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Field</th>
+                <th scope="col">Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ID:</td>
+                <td>{{pet.id}}</td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td>{{pet.name}}</td>
+            </tr>
+            <tr>
+                <td>Species:</td>
+                <td>{{pet.species}}</td>
+            </tr>
+            <tr>
+                <td>Photo URL:</td>
+                <td>{{pet.photo_url}}</td>
+            </tr>
+            <tr>
+                <td>Age:</td>
+                <td>{{pet.age}}</td>
+            </tr>
+            <tr>
+                <td>Notes:</td>
+                <td>{{pet.notes}}</td>
+            </tr>
+            <tr>
+                <td>Adoptable:</td>
+                <td>{{pet.available}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/" class="btn btn-outline-primary">Return to Pet List</a>
+    </div>
+{% endblock %}

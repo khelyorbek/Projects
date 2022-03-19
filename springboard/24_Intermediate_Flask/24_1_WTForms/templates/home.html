@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %} Pet Adoption Center {% endblock %}
+
+{% block content %}
+    <div class="container">
+    <br>
+    <h1 class="text-center"><i class="bi bi-hospital"></i> Pet Adoption Center <i class="bi bi-building"></i></h1>
+    
+    <div id="pet_list" class="row row-cols-3" style="--bs-gutter-x:0;">
+        {% for pet in pets %}
+            <div class="col m-2 card" style="width: 19rem;">
+                <img src="{{ pet.photo_url }}" class="card-img-top img-fluid" alt="{{pet.name}}'s photo">
+                <div class="card-body">
+                    <h5 class="card-title">{{pet.name}} is 
+                        {% if pet.available == True %}
+                            <strong class="text-success">available</strong>
+                        {% else %}
+                            <strong class="text-danger">not available </strong>
+                        {% endif %}
+                        for adoption.
+                    </h5>
+                    <p class="card-text">{{pet.notes}}</p>
+                </div>
+                
+                <div class="card-footer">
+                    <a href="/view/{{pet.id}}" class="btn btn-outline-primary">View</a>
+                <a href="/edit/{{pet.id}}" class="btn btn-outline-dark">Edit</a>
+                <a href="/delete/{{pet.id}}" class="btn btn-outline-danger float-end">Delete</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <a href="/add" class="btn-lg btn-success position-fixed bottom-0 end-0 m-3" style="text-decoration: none;"><i class="bi bi-clipboard-plus"> </i> Add a new pet</a>
+</div>
+{% endblock %}
