@@ -39,16 +39,19 @@ def add_pet():
         notes = form.notes.data
 
         if photo_url == '':
-            photo_url = 'https://i.pinimg.com/originals/22/1c/20/221c2021c91d60b1eb13ea676460a92c.png'
+            photo_url = None
+
+        # if photo_url == '':
+        #     p = Pet(name=name,species=species,photo_url=None,age=age,notes=notes)
+        # else:
 
         p = Pet(name=name,species=species,photo_url=photo_url,age=age,notes=notes)
         db.session.add(p)
         db.session.commit()
 
         return redirect('/')
-    else:
-        # Should not redirect. If we do, the error messages don't show up.
-        return render_template('pet_add_form.html', form=form)
+        
+    return render_template('pet_add_form.html', form=form)
 
 @app.route('/view/<int:id>')
 def view_pet(id):
