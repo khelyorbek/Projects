@@ -4,3 +4,5 @@ venv/
 *.pyc
 # Ignoring python's local cache
 ___pycache___/
+# Ignoring secret files that house API keys
+secrets.py
