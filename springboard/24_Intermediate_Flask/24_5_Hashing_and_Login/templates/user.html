@@ -1,0 +1,76 @@
+{% extends 'base.html'  %}
+
+{% block title %} View user {% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-10"><h1>{{user.username}}'s Information:</h1></div>
+    <div class="col-2 py-2">
+        <form action="/users/{{user.username}}/delete" method="post">
+            <button class="btn btn-danger"><i class="bi bi-person-x-fill"></i> Delete</button>
+            <a href="/logout" class="btn btn-info"><i class="bi bi-door-closed"></i> Logout</a>
+        </form>
+    </div>
+</div>
+
+
+    
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Field</th>
+            <th scope="col">Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Username:</td>
+            <td>{{user.username}}</td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td>{{user.email}}</td>
+        </tr>
+        <tr>
+            <td>First Name:</td>
+            <td>{{user.first_name}}</td>
+        </tr>
+        <tr>
+            <td>Photo URL:</td>
+            <td>{{user.last_name}}</td>
+        </tr>
+
+    </tbody>
+</table>
+
+<div class="row">
+    <div class="col-10"><h1>Feedback List</h1></div>
+    <div class="col-2 py-2"><a href="/users/{{user.username}}/feedback/add" class="btn btn-success"><i class="bi bi-plus-lg"></i> Add new feedback</a></div>
+</div>
+
+<table class="table table-striped table-hover">
+    <thead class="thead thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Content</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for feedback in feedbacks %}
+        <tr>
+            <td style="width:5%">{{feedback.id}}</td>
+            <td style="width:25%">{{feedback.title}}</td>
+            <td style="width:60%">{{feedback.content}}</td>
+            {% if feedback.username == session['username'] %}
+            <td style="width:5%"><a href="/feedback/{{feedback.id}}/update" class="btn btn-outline-primary">Edit</a></td>
+            
+            <td style="width:5%"><form action="/feedback/{{feedback.id}}/delete" method="post"><button class="btn btn-outline-danger">Delete</button></form></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
