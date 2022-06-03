@@ -1,0 +1,15 @@
+{
+  "name": "mean-median-mode",
+  "version": "1.0.0",
+  "description": "32_1_exercise",
+  "main": "MeanMedianMode.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "expres": "^0.0.5",
+    "express": "^4.18.1"
+  }
+}
