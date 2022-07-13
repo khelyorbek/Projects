@@ -58,10 +58,10 @@ router.get('/:code', async(req, res, next) => {
             throw new ExpressError(`Can't find company with code of ${code}`, 404)
         }
 
-        const results2 = await db.query('SELECT * FROM invoices WHERE comp_code=$1',[code]);
+        let results2 = await db.query('SELECT * FROM invoices WHERE comp_code=$1',[code]);
         if(results2.rows.length === 0) {
             // If the company given cannot be found, this should return a 404 status response.
-            throw new ExpressError(`Can't find user with code of ${code}`, 404)
+            results2.rows = "No invoices found"
         }
 
         const inds = results.rows.map(d => d.ind_code);
