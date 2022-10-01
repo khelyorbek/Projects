@@ -16,6 +16,9 @@ const {
   adminToken,
 } = require("./_testCommon");
 
+let allJobs;
+let jobIDs;
+
 beforeAll(commonBeforeAll);
 beforeEach(commonBeforeEach);
 afterEach(commonAfterEach);
@@ -346,38 +349,38 @@ describe("POST /users/:username/jobs/:id", function () {
   test("works for admins", async function () {
     // getting the ids of the jobs
     const allJobs = await Job.findAll();
-    const jobIDs = allJobs.map(j => j.id);
+    const allJobIDs = allJobs.map(j => j.id);
 
     const resp = await request(app)
-      .post(`/users/u1/jobs/${jobIDs[0]}`)
+      .post(`/users/u1/jobs/${allJobIDs[0]}`)
       .set("authorization", `Bearer ${adminToken}`);
 
     // console.log("RESP>>>", resp);
     expect(resp.statusCode).toEqual(200);
-    expect(resp.text).toEqual(`{"applied":"${jobIDs[0]}"}`);
+    expect(resp.text).toEqual(`{"applied":"${allJobIDs[0]}"}`);
   });
 
   test("works for same user", async function () {
     // getting the ids of the jobs
     const allJobs = await Job.findAll();
-    const jobIDs = allJobs.map(j => j.id);
+    const allJobIDs = allJobs.map(j => j.id);
 
     const resp = await request(app)
-      .post(`/users/u1/jobs/${jobIDs[0]}`)
+      .post(`/users/u1/jobs/${allJobIDs[0]}`)
       .set("authorization", `Bearer ${u1Token}`);
 
     // console.log("RESP>>>", resp);
     expect(resp.statusCode).toEqual(200);
-    expect(resp.text).toEqual(`{"applied":"${jobIDs[0]}"}`);
+    expect(resp.text).toEqual(`{"applied":"${allJobIDs[0]}"}`);
   });
 
   test("unauth for non-admin and non-same user", async function () {
     // getting the ids of the jobs
     const allJobs = await Job.findAll();
-    const jobIDs = allJobs.map(j => j.id);
+    const allJobIDs = allJobs.map(j => j.id);
 
     const resp = await request(app)
-      .post(`/users/u2/jobs/${jobIDs[0]}`)
+      .post(`/users/u2/jobs/${allJobIDs[0]}`)
       .set("authorization", `Bearer SOMERANDOMTOKEN`);
 
     expect(resp.statusCode).toEqual(401);
@@ -386,10 +389,10 @@ describe("POST /users/:username/jobs/:id", function () {
   test("unauth for anon", async function () {
     // getting the ids of the jobs
     const allJobs = await Job.findAll();
-    const jobIDs = allJobs.map(j => j.id);
+    const allJobIDs = allJobs.map(j => j.id);
 
     const resp = await request(app)
-      .post(`/users/u2/jobs/${jobIDs[0]}`);
+      .post(`/users/u2/jobs/${allJobIDs[0]}`);
 
     expect(resp.statusCode).toEqual(401);
   });

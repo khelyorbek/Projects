@@ -11,8 +11,11 @@ const {
   commonAfterAll,
 } = require("./_testCommon");
 
+let allJobs;
+let jobIDs;
+
 beforeAll(commonBeforeAll);
-beforeEach(commonBeforeEach);
+beforeEach(async () => {await commonBeforeEach(); allJobs = await Job.findAll(); jobIDs = allJobs.map(j => j.id);});
 afterEach(commonAfterEach);
 afterAll(commonAfterAll);
 
@@ -83,8 +86,8 @@ describe("get", function () {
   test("works", async function () {
 
     // getting the ids of the jobs
-    const allJobs = await Job.findAll();
-    const jobIDs = allJobs.map(j => j.id);
+    // const allJobs = await Job.findAll();
+    // const jobIDs = allJobs.map(j => j.id);
 
     let job = await Job.get(jobIDs[0]);
     // console.log("JOBIDSSSSSSSS-0: ",jobIDs);
@@ -120,8 +123,8 @@ describe("update", function () {
 
   test("works", async function () {
     // getting the ids of the jobs
-    const allJobs = await Job.findAll();
-    const jobIDs = allJobs.map(j => j.id);
+    // const allJobs = await Job.findAll();
+    // const jobIDs = allJobs.map(j => j.id);
 
     let job = await Job.update(jobIDs[0], updateData);
     expect(job).toEqual({
@@ -156,8 +159,8 @@ describe("remove", function () {
   test("works", async function () {
 
     // getting the ids of the jobs
-    const allJobs = await Job.findAll();
-    const jobIDs = allJobs.map(j => j.id);
+    // const allJobs = await Job.findAll();
+    // const jobIDs = allJobs.map(j => j.id);
 
     await Job.remove(jobIDs[0]);
     const res = await db.query(

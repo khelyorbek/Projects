@@ -15,8 +15,11 @@ const {
     adminToken
 } = require("./_testCommon");
 
+let allJobs;
+let jobIDs;
+
 beforeAll(commonBeforeAll);
-beforeEach(commonBeforeEach);
+beforeEach(async () => {await commonBeforeEach(); allJobs = await Job.findAll(); jobIDs = allJobs.map(j => j.id);});
 afterEach(commonAfterEach);
 afterAll(commonAfterAll);
 
@@ -174,10 +177,10 @@ describe("GET /jobs", function () {
 
 describe("GET /jobs/:id", function () {
     test("works for anon", async function () {
-        const allJobs = await Job.findAll();
-        const allJobIDs = allJobs.map(j => j.id);
+        // const allJobs = await Job.findAll();
+        // const jobIDs = allJobs.map(j => j.id);
 
-        const resp = await request(app).get(`/jobs/${allJobIDs[0]}`);
+        const resp = await request(app).get(`/jobs/${jobIDs[0]}`);
         expect(resp.body).toEqual({
             job: allJobs[0]
         });
@@ -193,11 +196,11 @@ describe("GET /jobs/:id", function () {
 
 describe("PATCH /jobs/:id", function () {
     test("works for admin", async function () {
-        const allJobs = await Job.findAll();
-        const allJobIDs = allJobs.map(j => j.id);
+        // const allJobs = await Job.findAll();
+        // const jobIDs = allJobs.map(j => j.id);
 
         const resp = await request(app)
-            .patch(`/jobs/${allJobIDs[0]}`)
+            .patch(`/jobs/${jobIDs[0]}`)
             .send({
                 title: "Somenewtitle",
             })
@@ -214,11 +217,11 @@ describe("PATCH /jobs/:id", function () {
     });
 
     test("unauth for anon", async function () {
-        const allJobs = await Job.findAll();
-        const allJobIDs = allJobs.map(j => j.id);
+        // const allJobs = await Job.findAll();
+        // const jobIDs = allJobs.map(j => j.id);
 
         const resp = await request(app)
-            .patch(`/jobs/${allJobIDs[0]}`)
+            .patch(`/jobs/${jobIDs[0]}`)
             .send({
                 title: "Somenewtitle2",
             });
@@ -236,11 +239,11 @@ describe("PATCH /jobs/:id", function () {
     });
 
     test("admin - bad request on id change attempt", async function () {
-        const allJobs = await Job.findAll();
-        const allJobIDs = allJobs.map(j => j.id);
+        // const allJobs = await Job.findAll();
+        // const jobIDs = allJobs.map(j => j.id);
 
         const resp = await request(app)
-            .patch(`/jobs/${allJobIDs[0]}`)
+            .patch(`/jobs/${jobIDs[0]}`)
             .send({
                 id: 679,
             })
@@ -249,12 +252,12 @@ describe("PATCH /jobs/:id", function () {
     });
 
     test("bad request on invalid data", async function () {
-        const allJobs = await Job.findAll();
-        const allJobIDs = allJobs.map(j => j.id);
+        // const allJobs = await Job.findAll();
+        // const jobIDs = allJobs.map(j => j.id);
 
         // sending salary as string and equity as letter which are both incorrect per the JSON Validator Schema
         const resp = await request(app)
-            .patch(`/jobs/${allJobIDs[0]}`)
+            .patch(`/jobs/${jobIDs[0]}`)
             .send({
                 title: "Somenewtitle4",
                 salary: "12345",
@@ -270,23 +273,23 @@ describe("PATCH /jobs/:id", function () {
 
 describe("DELETE /jobs/:id", function () {
     test("works for admin", async function () {
-        const allJobs = await Job.findAll();
-        const allJobIDs = allJobs.map(j => j.id);
+        // const allJobs = await Job.findAll();
+        // const jobIDs = allJobs.map(j => j.id);
 
         const resp = await request(app)
-            .delete(`/jobs/${allJobIDs[0]}`)
+            .delete(`/jobs/${jobIDs[0]}`)
             .set("authorization", `Bearer ${adminToken}`);
         expect(resp.body).toEqual({
-            deleted: allJobIDs[0].toString()
+            deleted: jobIDs[0].toString()
         });
     });
 
     test("unauth for others", async function () {
-        const allJobs = await Job.findAll();
-        const allJobIDs = allJobs.map(j => j.id);
+        // const allJobs = await Job.findAll();
+        // const jobIDs = allJobs.map(j => j.id);
 
         const resp = await request(app)
-            .delete(`/jobs/${allJobIDs[0]}`);
+            .delete(`/jobs/${jobIDs[0]}`);
         expect(resp.statusCode).toEqual(401);
     });
 

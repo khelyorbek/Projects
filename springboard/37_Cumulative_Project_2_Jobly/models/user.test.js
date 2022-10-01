@@ -15,8 +15,11 @@ const {
   commonAfterAll,
 } = require("./_testCommon");
 
+let allJobs;
+let jobIDs;
+
 beforeAll(commonBeforeAll);
-beforeEach(commonBeforeEach);
+beforeEach(async () => {await commonBeforeEach(); allJobs = await Job.findAll(); jobIDs = allJobs.map(j => j.id);});
 afterEach(commonAfterEach);
 afterAll(commonAfterAll);
 
@@ -237,8 +240,8 @@ describe("remove", function () {
 describe("applying to a job", function () {
   test("works", async function () {
     // getting the ids of the jobs
-    const allJobs = await Job.findAll();
-    const jobIDs = allJobs.map(j => j.id);
+    // const allJobs = await Job.findAll();
+    // const jobIDs = allJobs.map(j => j.id);
 
     const res = await User.applyToJob("u1", jobIDs[0]);
 
@@ -251,8 +254,8 @@ describe("applying to a job", function () {
 
   test("not found if no such user", async function () {
     // getting the ids of the jobs
-    const allJobs = await Job.findAll();
-    const jobIDs = allJobs.map(j => j.id);
+    // const allJobs = await Job.findAll();
+    // const jobIDs = allJobs.map(j => j.id);
 
     try {
       // trying to add the job with a username that doesn't exist
@@ -267,8 +270,8 @@ describe("applying to a job", function () {
 
   test("not found if no such job", async function () {
     // getting the ids of the jobs
-    const allJobs = await Job.findAll();
-    const jobIDs = allJobs.map(j => j.id);
+    // const allJobs = await Job.findAll();
+    // const jobIDs = allJobs.map(j => j.id);
 
     try {
       // trying to add the job with a username that doesn't exist
