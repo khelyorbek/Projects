@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    style="display: flex; font-size: 3rem; align-items: center; justify-content: center; text-align: center;"
+  >
+    REMOVE
+  </div>
+</DocumentFragment>
+`;
