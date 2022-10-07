@@ -12,12 +12,16 @@ it("matches snapshot", function () {
   expect(asFragment()).toMatchSnapshot();
 });
 
-// PASS  src/NewBoxForm.test.js (28.937s)
-// PASS  src/App.test.js (33.012s)
-// PASS  src/BoxList.test.js (41.528s)
-// PASS  src/Box.test.js (49.744s)
+// PASS  src/App.test.js (29.224s)
+// PASS  src/Todo.test.js (31.508s)
+// PASS  src/TodoList.test.js (39.908s)
+// PASS  src/NewTodoForm.test.js (49.277s)
+// › 1 snapshot written.
+
+// Snapshot Summary
+// › 1 snapshot written from 1 test suite.
 
 // Test Suites: 4 passed, 4 total
 // Tests:       12 passed, 12 total
-// Snapshots:   4 passed, 4 total
-// Time:        62.101s
+// Snapshots:   1 written, 3 passed, 4 total
+// Time:        58.499s
