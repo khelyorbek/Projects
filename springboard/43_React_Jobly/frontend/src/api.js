@@ -22,8 +22,8 @@ class JoblyApi {
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${JoblyApi.token}` };
     const params = (method === "get")
-        ? data
-        : {};
+      ? data
+      : {};
 
     try {
       return (await axios({ url, method, data, params, headers })).data;
@@ -42,28 +42,73 @@ class JoblyApi {
     return res.company;
   }
 
-  /** Get all companies */
+  // Get all the companies
   static async getCompanies(name) {
     // looks like provide request function accepts data where we can pass the name to
     // which will allow us to filter it out
+    // this is aget request to endpoint
     let res = await this.request(`companies`, { name });
+    // only responding with the companies array
     return res.companies;
   }
 
-  /** Get all jobs */
+  // Getting all the jobs
   static async getJobs(title) {
     // looks like provide request function accepts data where we can pass the name to
     // which will allow us to filter it out
+    // this is a GET request
     let res = await this.request(`jobs`, { title });
     return res.jobs;
   }
 
-  // obviously, you'll add a lot here ...
+  // Signing up with a new user id
+  static async signup(data) {
+    // sending a post request to auth/register endpoint and sending the data passed to this function
+    // respond with the token that we receive.
+    // POST request
+    let res = await this.request(`auth/register`, data, "post");
+    return res.token;
+  }
+
+  // Login function
+  static async login(data) {
+    // send a POST request to an endpoint
+    let res = await this.request(`auth/token`, data, "post");
+    // returns a token which is then stored inside App.js inside a localStorage
+    return res.token;
+  }
+
+  // function to get current user
+  static async getCurrentUser(username) {
+    // sending a get request to the users/username endpoint
+    // returning the user in the response
+    // sends a GET request to the endpoint
+    let res = await this.request(`users/${username}`);
+    // responds with the user object
+    return res.user;
+  }
+
+  // function to save user's profile
+  static async saveProfile(username, data) {
+    // sending a patch request to the endpoint and passing the data sent this function
+    let res = await this.request(`users/${username}`, data, "patch");
+    // responding with the updated user
+    return res.user;
+  }
+
+  // function to apply for new jobs
+  static async applyToJob(username, id) {
+    // sends a post request to an endpoint with the name of user and id of a job
+    await this.request(`users/${username}/jobs/${id}`, {}, "post");
+    // doesn't return anything because we have application array in the state in the App
+  }
+
 }
 
+// below is for debugging purposes only
 // for now, put token ("testuser" / "password" on class)
-JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-    "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-    "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+// JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
+//   "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
+//   "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
 export default JoblyApi;
