@@ -1,9 +1,9 @@
+// react components
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 // Bootstrap
 import Card from 'react-bootstrap/Card';
-
 
 // Custom css
 import "./CompanyCard.css";
@@ -31,10 +31,8 @@ const CompanyCard = (props) => {
                     {/* Displaying a logo of the company with some basic styling */}
                     {/* Also checking if logoUrl field exist in the data, if not, showing an image that says No logo */}
                     <Card.Img style={{float: 'right', height:'4rem', width: '12em', padding:'1rem'}} src={logoUrl ? logoUrl : '/logos/nologo.png'} />
-                    
+                    {/* showing description */}
                     <Card.Text> {description} </Card.Text>
-                    {/* Button below can be used for other purposes in the future */}
-                    {/* <Button variant="primary">Go somewhere</Button> */}
                 </Card.Body>
                 <Card.Footer>
                     {/* Showing the amount of employees in the footer  */}
