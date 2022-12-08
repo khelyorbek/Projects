@@ -12,11 +12,13 @@ import Container from 'react-bootstrap/Container';
 // this should show the full list of companies available
 // should use companyCard for each individual company
 const CompanyList = () => {
+    // using state to keep track of companies
     const [companies, setCompanies] = useState();
 
     // grabbing a list of companies
     useEffect(() => {
-        // not passing anything since we just want to get the company
+        // not passing anything since we just want to get the companIES
+        // if we pass something, then it will filter the results by company name
         getComp();
     }, [])
 
@@ -25,16 +27,16 @@ const CompanyList = () => {
         let res = await JoblyApi.getCompanies(nameFilter)
         // console.log(res)
         setCompanies(res);
-
     }
 
+    // showing a loading bar while the companies are loading.
     if(!companies) { return  < LoadingBar /> }
 
     return (<>
         <h1 className='display-6 text-center'>List of Companies</h1>
             <Search doSearch={getComp} />
         {
-           // since we use this area for filtering also, if there are no results
+           // since we use this area for filtering also (via search bar), if there are no results
            companies.length === 0 
            // then show a container saying there are no results
            ? <Container className="text-center p-5"> <h3 className="text-info">No results found. Please try again.</h3> </Container>
