@@ -22,13 +22,11 @@ class LinkedList {
 
     if (!this.head) {
       this.head = newNode;
-      this.tail = newNode;
-      this.length++;
     } else {
       this.tail.next = newNode;
-      this.tail = newNode;
-      this.length++;
     }
+    this.tail = newNode;
+    this.length++;
   }
 
   /*************** unshift(val): add new value to start of list. ***************/
@@ -36,15 +34,12 @@ class LinkedList {
     const newNode = new Node(val);
 
     if (!this.head) {
-      this.head = newNode;
       this.tail = newNode;
-      this.length++;
     } else {
       newNode.next = this.head;
-      this.head = newNode
-      this.length++;
     }
-
+    this.head = newNode;
+    this.length++;
   }
 
   /*************** pop(): return & remove last item. ***************/
@@ -63,9 +58,9 @@ class LinkedList {
       throw ("index is invalid")
     }
 
-    if (idx < 0 || idx >= this.length) {
-      throw ("index is invalid")
-    }
+    // if (idx < 0 || idx >= this.length) {
+    //   throw ("index is invalid")
+    // }
 
     for (let i = 0; i <= this.length; i++) {
       if (i === idx) {
